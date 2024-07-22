@@ -1,0 +1,18 @@
+# Gerador de Configurações de Geradores Solares
+
+## Descrição
+
+Este script automatiza a criação de geradores solares combinando painéis solares, inversores e controladores de carga de acordo com a compatibilidade de potência. 
+
+## Estrutura do Projeto
+
+- `main.py`: Script principal que realiza a criação dos geradores e a geração dos arquivos de saída.
+- `geradores_configurados.csv`: Arquivo CSV contendo as informações dos geradores configurados.
+- `email_marketing.pdf`: PDF contendo o e-mail para a equipe de marketing.
+- `README.md`: Documentação do projeto.
+
+## Como Usar
+
+1. Execute o script principal:
+   ```bash
+   python main.py
