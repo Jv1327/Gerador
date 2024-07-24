@@ -2,23 +2,21 @@ import pandas as pd
 from fpdf import FPDF
 import requests
 
-products = [
-    {"Categoria": "Painel Solar", "Id": 1001, "Potencia em W": 500, "Produto": "Painel Solar 500 W Marca A"},
-    {"Categoria": "Painel Solar", "Id": 1002, "Potencia em W": 500, "Produto": "Painel Solar 500 W Marca B"},
-    {"Categoria": "Painel Solar", "Id": 1003, "Potencia em W": 500, "Produto": "Painel Solar 500 W Marca C"},
-    {"Categoria": "Controlador de carga", "Id": 2001, "Potencia em W": 500, "Produto": "Controlador de Carga 30A Marca E"},
-    {"Categoria": "Controlador de carga", "Id": 2002, "Potencia em W": 750, "Produto": "Controlador de Carga 50A Marca E"},
-    {"Categoria": "Controlador de carga", "Id": 2003, "Potencia em W": 1000, "Produto": "Controlador de Carga 40A Marca D"},
-    {"Categoria": "Inversor", "Id": 3001, "Potencia em W": 500, "Produto": "Inversor 500W Marca D"},
-    {"Categoria": "Inversor", "Id": 3002, "Potencia em W": 1000, "Produto": "Inversor 1000W Marca D"}
-]
+url = "https://case-1sbzivi17-henriques-projects-2cf452dc.vercel.app/"
+
+response = requests.get(url)
+if response.status_code == 200:
+    products = response.json()
+else:
+    print("Falha ao obter os dados dos produtos")
+    products = []
 
 df_products = pd.DataFrame(products)
 print(df_products.head())
 
 def create_generators(df_products):
     generators = []
-    generator_id = 10000  
+    generator_id = 10000 
 
     for panel in df_products[df_products['Categoria'] == 'Painel Solar'].itertuples():
         panels = df_products[(df_products['Categoria'] == 'Painel Solar') & (df_products['Potencia em W'] == panel._3)]
